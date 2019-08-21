@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.notify_management_to_99500cad-00b4-4472-abab-58cb6bb7bf15" model="ir.actions.server" context="{'studio': True}">
+    <field name="binding_model_id" eval="False"/>
+    <field name="binding_type">action</field>
+    <field name="child_ids" eval="[(6, 0, [])]"/>
+    <field name="code"><![CDATA[# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+
+
+]]></field>
+    <field name="crud_model_id" eval="False"/>
+    <field name="help" eval="False"/>
+    <field name="link_field_id" eval="False"/>
+    <field name="model_id" ref="purchase.model_purchase_order"/>
+    <field name="name">Notify Management to Approve Purchase Order</field>
+    <field name="sequence">5</field>
+    <field name="state">email</field>
+  </record>
+  <record id="studio_customization.daily_check_for_pos__bf6bcfae-0f15-4f80-b137-5d6fe37dd647" model="ir.actions.server" context="{'studio': True}">
+    <field name="binding_model_id" eval="False"/>
+    <field name="binding_type">action</field>
+    <field name="child_ids" eval="[(6, 0, [])]"/>
+    <field name="code"><![CDATA[# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+
+
+]]></field>
+    <field name="crud_model_id" eval="False"/>
+    <field name="help" eval="False"/>
+    <field name="link_field_id" eval="False"/>
+    <field name="model_id" ref="purchase.model_purchase_order"/>
+    <field name="name">Daily Check for POs Awaiting Approval</field>
+    <field name="sequence">5</field>
+    <field name="state">email</field>
+  </record>
+  <record id="studio_customization.notify_consultant_of_a21cb2ec-f9e1-4d3b-a442-9ecc4089ce15" model="ir.actions.server" context="{'studio': True}">
+    <field name="binding_model_id" eval="False"/>
+    <field name="binding_type">action</field>
+    <field name="child_ids" eval="[(6, 0, [])]"/>
+    <field name="code"><![CDATA[# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+
+
+]]></field>
+    <field name="crud_model_id" eval="False"/>
+    <field name="help" eval="False"/>
+    <field name="link_field_id" eval="False"/>
+    <field name="model_id" ref="purchase.model_purchase_order"/>
+    <field name="name">Notify Consultant of Approval / Rejection of Purchase Order</field>
+    <field name="sequence">5</field>
+    <field name="state">email</field>
+  </record>
+  <record id="studio_customization.tickets_new_in_progr_d531b549-5327-4549-8b55-007bf312b216" model="ir.actions.server" context="{'studio': True}">
+    <field name="binding_model_id" eval="False"/>
+    <field name="binding_type">action</field>
+    <field name="child_ids" eval="[(6, 0, [])]"/>
+    <field name="code"><![CDATA[# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+
+
+]]></field>
+    <field name="crud_model_id" eval="False"/>
+    <field name="help" eval="False"/>
+    <field name="link_field_id" eval="False"/>
+    <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+    <field name="name">Tickets - New -&gt; In Progress</field>
+    <field name="sequence">5</field>
+    <field name="state">object_write</field>
+  </record>
+  <record id="studio_customization.task_new_in_progress_4615fbb2-42f8-4fcb-8e7b-db2318040882" model="ir.actions.server" context="{'studio': True}">
+    <field name="binding_model_id" eval="False"/>
+    <field name="binding_type">action</field>
+    <field name="child_ids" eval="[(6, 0, [])]"/>
+    <field name="code"><![CDATA[# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+
+
+]]></field>
+    <field name="crud_model_id" eval="False"/>
+    <field name="help" eval="False"/>
+    <field name="link_field_id" eval="False"/>
+    <field name="model_id" ref="project.model_project_task"/>
+    <field name="name">Task: New -&gt; In Progress</field>
+    <field name="sequence">5</field>
+    <field name="state">object_write</field>
+  </record>
+  <record id="studio_customization.leave_notification_af4b7f9e-746e-45e6-8d3a-3e0fb7553d0b" model="ir.actions.server" context="{'studio': True}">
+    <field name="binding_model_id" eval="False"/>
+    <field name="binding_type">action</field>
+    <field name="child_ids" eval="[(6, 0, [])]"/>
+    <field name="code"><![CDATA[# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+
+
+]]></field>
+    <field name="crud_model_id" eval="False"/>
+    <field name="help" eval="False"/>
+    <field name="link_field_id" eval="False"/>
+    <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+    <field name="name">Leave Notification</field>
+    <field name="sequence">5</field>
+    <field name="state">email</field>
+  </record>
+</odoo>

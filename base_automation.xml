@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.notify_management_to_63b984ab-dae8-417e-b5f7-12bbcf5de722" model="base.automation" context="{'studio': True}">
+    <field name="action_server_id" ref="studio_customization.notify_management_to_99500cad-00b4-4472-abab-58cb6bb7bf15"/>
+    <field name="active" eval="True"/>
+    <field name="filter_domain">[["state","=","approve_delivery_ts"]]</field>
+    <field name="filter_pre_domain">[["state","=","confirm_delivery"]]</field>
+    <field name="last_run" eval="False"/>
+    <field name="on_change_fields" eval="False"/>
+    <field name="trg_date_id" eval="False"/>
+    <field name="trg_date_range" eval="False"/>
+    <field name="trg_date_range_type" eval="False"/>
+    <field name="trigger">on_write</field>
+  </record>
+  <record id="studio_customization.notify_consultant_of_60bb5c58-9afb-4c87-aa8c-21e028621f58" model="base.automation" context="{'studio': True}">
+    <field name="action_server_id" ref="studio_customization.notify_consultant_of_a21cb2ec-f9e1-4d3b-a442-9ecc4089ce15"/>
+    <field name="active" eval="True"/>
+    <field name="filter_domain">["|",["state","=","cancel"],["state","=","confirm_delivery"]]</field>
+    <field name="filter_pre_domain">[["state","=","to approve"]]</field>
+    <field name="last_run" eval="False"/>
+    <field name="on_change_fields" eval="False"/>
+    <field name="trg_date_id" eval="False"/>
+    <field name="trg_date_range" eval="False"/>
+    <field name="trg_date_range_type" eval="False"/>
+    <field name="trigger">on_write</field>
+  </record>
+  <record id="studio_customization.tickets_new_in_progr_26a4d6c5-1a5b-436a-becc-2915b5394dd0" model="base.automation" context="{'studio': True}">
+    <field name="action_server_id" ref="studio_customization.tickets_new_in_progr_d531b549-5327-4549-8b55-007bf312b216"/>
+    <field name="active" eval="True"/>
+    <field name="filter_domain">["&amp;",["timesheet_ids","!=",False],["stage_id","=",1]]</field>
+    <field name="filter_pre_domain">["&amp;",["timesheet_ids","=",False],["stage_id","=",1]]</field>
+    <field name="last_run" eval="False"/>
+    <field name="on_change_fields" eval="False"/>
+    <field name="trg_date_id" eval="False"/>
+    <field name="trg_date_range" eval="False"/>
+    <field name="trg_date_range_type" eval="False"/>
+    <field name="trigger">on_write</field>
+  </record>
+  <record id="studio_customization.assign_tickets_to_ri_22eda641-e5cb-4c5e-b138-19c0cce31d11" model="base.automation" context="{'studio': True}">
+    <field name="active" eval="False"/>
+    <field name="filter_domain">[["team_id","ilike","Essatto"]]</field>
+    <field name="filter_pre_domain" eval="False"/>
+    <field name="last_run" eval="False"/>
+    <field name="on_change_fields" eval="False"/>
+    <field name="trg_date_id" eval="False"/>
+    <field name="trg_date_range" eval="False"/>
+    <field name="trg_date_range_type" eval="False"/>
+    <field name="trigger">on_create</field>
+  </record>
+  <record id="studio_customization.leave_notification_40da62e8-8e72-4da0-90c1-5356f395e4e1" model="base.automation" context="{'studio': True}">
+    <field name="action_server_id" ref="studio_customization.leave_notification_af4b7f9e-746e-45e6-8d3a-3e0fb7553d0b"/>
+    <field name="active" eval="True"/>
+    <field name="filter_domain" eval="False"/>
+    <field name="filter_pre_domain" eval="False"/>
+    <field name="last_run" eval="False"/>
+    <field name="on_change_fields" eval="False"/>
+    <field name="trg_date_id" eval="False"/>
+    <field name="trg_date_range" eval="False"/>
+    <field name="trg_date_range_type" eval="False"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+  <record id="studio_customization.daily_check_for_pos__d3603872-4bc0-4a97-aca4-a4d2dea3ea57" model="base.automation" context="{'studio': True}">
+    <field name="action_server_id" ref="studio_customization.daily_check_for_pos__bf6bcfae-0f15-4f80-b137-5d6fe37dd647"/>
+    <field name="active" eval="True"/>
+    <field name="filter_domain">[["state","=","to approve"]]</field>
+    <field name="filter_pre_domain" eval="False"/>
+    <field name="last_run">2019-08-16 20:25:41</field>
+    <field name="on_change_fields" eval="False"/>
+    <field name="trg_date_id" ref="purchase.field_purchase_order__write_date"/>
+    <field name="trg_date_range">1</field>
+    <field name="trg_date_range_type">day</field>
+    <field name="trigger">on_time</field>
+  </record>
+</odoo>

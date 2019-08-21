@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.approve_purchase_ord_75f949cc-e17b-4fd0-b100-683848b3a4f8" model="mail.template" context="{'studio': True}">
+    <field name="auto_delete" eval="False"/>
+    <field name="body_html">&lt;div style="max-width:600px; height:auto; margin-left:30px;"&gt;
+    &lt;div style="margin-left:30px;align=center;"&gt;Dear Management,&lt;br&gt;&amp;nbsp;&lt;/div&gt;&lt;div style="margin-left:30px;align=center;" width="60%"&gt;A request for approval of &lt;a href="/web#id=${object.id}&amp;amp;view_type=form&amp;amp;model=purchase.order&amp;amp;action=473&amp;amp;menu_id=332" data-original-title="" title="" aria-describedby="tooltip836804" style="text-decoration:none;color:rgb(0, 135, 132);background-color:transparent;"&gt;${object.name}&lt;/a&gt;&amp;nbsp;&amp;nbsp;exceeding $50 is submitted.&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;p style="margin:0px 0px 9px 0px;font-size:13px;font-family:&amp;quot;Lucida Grande&amp;quot;, Helvetica, Verdana, Arial, sans-serif;"&gt; &lt;/p&gt;
+
+&lt;div style="margin-left:30px;align=center;" width="60%"&gt;&lt;br&gt;Can you please review and approve.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+    &lt;span style="margin-left:30px;font-weight:normal;"&gt;Thank you&lt;/span&gt;&lt;br&gt;&lt;span style="margin-left:30px;font-weight:normal;"&gt;&amp;nbsp;&lt;/span&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;img src="https://ioppolo.com.au/logo.png" class="pull-left" style="float:left;vertical-align:middle;border-image-repeat:initial;border-image-outset:initial;border-image-width:initial;border-image-slice:initial;border-image-source:initial;border-left-color:initial;border-bottom-color:initial;border-right-color:initial;border-top-color:initial;border-left-style:initial;border-bottom-style:initial;border-right-style:initial;border-top-style:initial;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;-moz-border-left-colors:none;-moz-border-bottom-colors:none;-moz-border-right-colors:none;-moz-border-top-colors:none;width: 25%;"&gt;&lt;br&gt;&lt;span style="font-weight:normal; margin-left:30px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="margin-left:30px;font-weight:normal;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;</field>
+    <field name="copyvalue" eval="False"/>
+    <field name="email_cc" eval="False"/>
+    <field name="email_from">I&amp;A Office &lt;office@ioppolo.com.au&gt;</field>
+    <field name="email_to">gioppolo@ioppolo.com.au,alepore@ioppolo.com.au</field>
+    <field name="lang" eval="False"/>
+    <field name="model_id" ref="purchase.model_purchase_order"/>
+    <field name="model_object_field" eval="False"/>
+    <field name="name">Approve Purchase Order</field>
+    <field name="null_value" eval="False"/>
+    <field name="partner_to" eval="False"/>
+    <field name="ref_ir_act_window" eval="False"/>
+    <field name="reply_to" eval="False"/>
+    <field name="report_name" eval="False"/>
+    <field name="report_template" eval="False"/>
+    <field name="scheduled_date" eval="False"/>
+    <field name="sub_model_object_field" eval="False"/>
+    <field name="sub_object" eval="False"/>
+    <field name="subject">PO Approval Required</field>
+    <field name="use_default_to" eval="False"/>
+    <field name="user_signature" eval="False"/>
+  </record>
+  <record id="studio_customization.purchase_order_appro_a0f110df-d8cc-4006-811a-bf9a1d5ffc17" model="mail.template" context="{'studio': True}">
+    <field name="auto_delete" eval="False"/>
+    <field name="body_html">&lt;div style="max-width:600px; height:auto; margin-left:30px;"&gt;
+    &lt;div style="margin-left:30px;align=center;"&gt;Dear Team,&lt;br&gt;&amp;nbsp;&lt;/div&gt;&lt;div style="margin-left:30px;align=center;" width="60%"&gt;There is an update in the&amp;nbsp;&lt;a href="/web#id=${object.id}&amp;amp;view_type=form&amp;amp;model=purchase.order&amp;amp;action=473&amp;amp;menu_id=332" style="color:rgb(0, 135, 132);background-color:transparent;text-decoration-color: initial; text-decoration-style: initial; text-decoration-line: none; outline: 0px none;" data-original-title="" title=""&gt;${object.name}&lt;/a&gt;.&amp;nbsp;&lt;br&gt;&lt;br&gt;Please review the status as the Purchase Order has been approved or more information is required.&lt;br&gt;&lt;br&gt;&lt;/div&gt;
+    &lt;span style="margin-left:30px;font-weight:normal;"&gt;Thank you&lt;/span&gt;&lt;br&gt;&lt;span style="margin-left:30px;font-weight:normal;"&gt;&amp;nbsp;&lt;/span&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;img src="http://ioppolo.com.au/logo.png" class="pull-left" style="float:left;vertical-align:middle;border-image-repeat:initial;border-image-outset:initial;border-image-width:initial;border-image-slice:initial;border-image-source:initial;border-left-color:initial;border-bottom-color:initial;border-right-color:initial;border-top-color:initial;border-left-style:initial;border-bottom-style:initial;border-right-style:initial;border-top-style:initial;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;-moz-border-left-colors:none;-moz-border-bottom-colors:none;-moz-border-right-colors:none;-moz-border-top-colors:none;width: 25%;"&gt;&lt;br&gt;&lt;span style="font-weight:normal; margin-left:30px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;span style="margin-left:30px;font-weight:normal;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;</field>
+    <field name="copyvalue" eval="False"/>
+    <field name="email_cc" eval="False"/>
+    <field name="email_from">I&amp;A Office &lt;office@ioppolo.com.au&gt;</field>
+    <field name="email_to">${object.create_uid.login}</field>
+    <field name="lang" eval="False"/>
+    <field name="model_id" ref="purchase.model_purchase_order"/>
+    <field name="model_object_field" eval="False"/>
+    <field name="name">Purchase Order Approved or Cancelled</field>
+    <field name="null_value" eval="False"/>
+    <field name="partner_to" eval="False"/>
+    <field name="ref_ir_act_window" eval="False"/>
+    <field name="reply_to" eval="False"/>
+    <field name="report_name" eval="False"/>
+    <field name="report_template" eval="False"/>
+    <field name="scheduled_date" eval="False"/>
+    <field name="sub_model_object_field" eval="False"/>
+    <field name="sub_object" eval="False"/>
+    <field name="subject">Purchase Order Updated</field>
+    <field name="use_default_to" eval="False"/>
+    <field name="user_signature" eval="False"/>
+  </record>
+  <record id="studio_customization.ia_leave_notificatio_733d686e-b57c-4ca0-8154-33b54b82117c" model="mail.template" context="{'studio': True}">
+    <field name="auto_delete" eval="True"/>
+    <field name="body_html">&lt;p style="margin:0px 0 1rem 0;font-size:13px;font-family:&amp;quot;Lucida Grande&amp;quot;, Helvetica, Verdana, Arial, sans-serif;"&gt;&lt;br&gt;&lt;/p&gt;</field>
+    <field name="copyvalue" eval="False"/>
+    <field name="email_cc" eval="False"/>
+    <field name="email_from" eval="False"/>
+    <field name="email_to" eval="False"/>
+    <field name="lang" eval="False"/>
+    <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+    <field name="model_object_field" eval="False"/>
+    <field name="name">IA Leave Notification</field>
+    <field name="null_value" eval="False"/>
+    <field name="partner_to" eval="False"/>
+    <field name="ref_ir_act_window" eval="False"/>
+    <field name="reply_to" eval="False"/>
+    <field name="report_name" eval="False"/>
+    <field name="report_template" eval="False"/>
+    <field name="scheduled_date" eval="False"/>
+    <field name="sub_model_object_field" eval="False"/>
+    <field name="sub_object" eval="False"/>
+    <field name="subject" eval="False"/>
+    <field name="use_default_to" eval="False"/>
+    <field name="user_signature" eval="False"/>
+  </record>
+</odoo>

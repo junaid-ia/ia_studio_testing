@@ -1,0 +1,597 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="product.product_product_tree_view" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <tree string="Product Variants" default_order="sequence">
+        <field name="default_code"/>
+        <field name="name"/>
+        <field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>
+        <field name="lst_price"/>
+        <field name="price" invisible="not context.get('pricelist',False)"/>
+        <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>
+        <field name="barcode"/>
+        <field name="product_tmpl_id" invisible="1"/>
+        <field name="active" invisible="1"/>
+      </tree>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">product.product</field>
+    <field name="name">product.product.tree</field>
+    <field name="priority">7</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="project.view_task_form2" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form string="Task" class="o_form_project_tasks">
+        <header>
+          <button name="action_assign_to_me" string="Assign to Me" type="object" class="oe_highlight" attrs="{'invisible' : [('user_id', '!=', False)]}"/>
+          <field name="stage_id" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}"/>
+        </header>
+        <sheet string="Task">
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button" icon="fa-tasks" type="object" name="action_open_parent_task" string="Parent Task" attrs="{'invisible' : [('parent_id', '=', False)]}" groups="project.group_subtask_project"/>
+            <button name="338" type="action" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible' : [('parent_id', '!=', False)]}" context="{'project_id': subtask_project_id, 'name': name, 'partner_id': partner_id}" groups="project.group_subtask_project">
+              <field string="Sub-tasks" name="subtask_count" widget="statinfo"/>
+            </button>
+            <button name="toggle_active" type="object" groups="base.group_user" class="oe_stat_button" icon="fa-archive">
+              <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+            </button>
+          </div>
+          <field name="kanban_state" widget="state_selection"/>
+          <div class="oe_title">
+            <h1 class="o_row">
+              <field name="priority" widget="priority"/>
+              <field name="name" placeholder="Task Title..."/>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name="project_id" domain="[('active', '=', True)]"/>
+              <field name="user_id" class="o_task_user_field" options="{&quot;no_open&quot;: True}"/>
+              <field name="legend_blocked" invisible="1"/>
+              <field name="legend_normal" invisible="1"/>
+              <field name="legend_done" invisible="1"/>
+            </group>
+            <group>
+              <field name="date_deadline"/>
+              <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+            </group>
+          </group>
+          <notebook>
+            <page name="description_page" string="Description">
+              <field name="description" type="html"/>
+              <div class="oe_clear"/>
+            </page>
+            <page name="extra_info" string="Extra Info">
+              <group>
+                <group>
+                  <field name="sequence" groups="base.group_no_one"/>
+                  <field name="partner_id"/>
+                  <field name="email_from"/>
+                  <field name="email_cc" groups="base.group_no_one"/>
+                  <field name="parent_id" groups="project.group_subtask_project"/>
+                  <field name="child_ids" invisible="1"/>
+                  <field name="subtask_project_id" invisible="1"/>
+                  <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                  <field name="displayed_image_id" groups="base.group_no_one"/>
+                </group>
+                <group>
+                  <field name="date_assign" groups="base.group_no_one"/>
+                  <field name="date_last_stage_update" groups="base.group_no_one"/>
+                </group>
+                <group string="Working Time to Assign" attrs="{'invisible': [('working_hours_open', '=', 0.0)]}">
+                  <field name="working_hours_open" string="Hours"/>
+                  <field name="working_days_open" string="Days"/>
+                </group>
+                <group string="Working Time to Close" attrs="{'invisible': [('working_hours_close', '=', 0.0)]}">
+                  <field name="working_hours_close" string="Hours"/>
+                  <field name="working_days_close" string="Days"/>
+                </group>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">project.task</field>
+    <field name="name">project.task.form</field>
+    <field name="priority">2</field>
+    <field name="type">form</field>
+  </record>
+  <record id="helpdesk.helpdesk_ticket_view_form" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <form string="Helpdesk Ticket">
+        <header>
+          <button name="assign_ticket_to_self" string="Assign To Me" type="object" class="oe_highlight" groups="helpdesk.group_helpdesk_user"/>
+          <field name="stage_id" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}"/>
+        </header>
+        <sheet>
+          <field name="sla_active" invisible="1"/>
+          <field name="partner_tickets" invisible="1"/>
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button" name="open_customer_tickets" icon="fa-ticket" type="object" attrs="{'invisible': ['|', ('partner_id', '=', False), ('partner_tickets', '&lt;=', 1)]}">
+              <field name="partner_tickets" string="Customer Tickets" widget="statinfo"/>
+            </button>
+            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+              <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+            </button>
+          </div>
+          <field name="kanban_state" widget="state_selection"/>
+          <div class="oe_title">
+            <h1>
+              <field name="name" class="field_name" placeholder="Subject..."/>
+            </h1>
+            <field name="sla_name" class="label label-danger oe_inline" attrs="{'invisible': [('sla_active','=',False)]}"/>
+          </div>
+          <group>
+            <group>
+              <field name="team_id"/>
+              <field name="user_id" class="field_user_id"/>
+              <field name="priority" widget="priority"/>
+              <field name="company_id" groups="base.group_multi_company"/>
+              <field name="deadline" readonly="1" attrs="{'invisible': [('deadline', '=', False)]}"/>
+              <field name="sla_id" invisible="1"/>
+            </group>
+            <group>
+              <field name="partner_id" class="field_partner_id"/>
+              <field name="partner_name" attrs="{'invisible': [('partner_id', '!=', False)]}"/>
+              <field name="partner_email"/>
+              <field name="ticket_type_id" widget="selection"/>
+              <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+            </group>
+          </group>
+          <field name="description" class="field_description" placeholder="Description of the ticket..."/>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+        </div>
+      </form>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="name">helpdesk.ticket.form</field>
+    <field name="priority">16</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_res_comp_9e4bf209-a866-43f2-b7e0-deb35e07cce0" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='vat']" position="attributes">
+          <attribute name="string">ABN</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="base.view_company_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">res.company</field>
+    <field name="name">Odoo Studio: res.company.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_res_part_e42ad688-96b8-4cd9-a971-d81ba189d6dc" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='website_published']" position="attributes">
+          <attribute name="groups">hr.group_hr_manager</attribute>
+        </xpath>
+        <xpath expr="//field[@name='task_count']" position="attributes">
+          <attribute name="groups">base.group_user</attribute>
+        </xpath>
+        <xpath expr="//field[@name='active']" position="attributes">
+          <attribute name="groups">hr.group_hr_manager</attribute>
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="attributes">
+          <attribute name="string">ABN</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">res.partner</field>
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_helpdesk_a3badef6-69d0-4aa6-9a45-79c5721434a6" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='deadline']" position="after">
+          <field name="x_studio_field_vaJN8" string="Customer Quoted Hours" help="Use this field when Quoting customer time to perform task" widget="float_time"/>
+          <field name="x_studio_field_EJjXB" string="Supplier PO"/>
+          <field name="x_studio_field_IMstb" string="Supplier PO Hours" widget="float_time"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='tag_ids']" position="after">
+          <field name="x_studio_field_NAr4g" string="Remaining Hours"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[2]/field[@name='timesheet_ids']/tree[1]/field[@name='date']" position="after">
+          </xpath>
+        <xpath expr="//field[@name='employee_id']" position="after">
+          <field name="x_studio_field_xWMiV" string="Ticket ID"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[2]/field[@name='timesheet_ids']/tree[1]" position="after">
+          <form string="Analytic Entry">
+            <sheet string="Analytic Entry">
+              <group>
+                <group>
+                  <field name="name" modifiers="{}"/>
+                  <field name="account_id" on_change="1" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
+                  <field name="tag_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="general_account_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                  <field name="ref" modifiers="{}"/>
+                  <field name="partner_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                  <field name="move_id" readonly="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                  <field name="date" modifiers="{&quot;required&quot;: true}"/>
+                  <field name="company_id" on_change="1" can_create="true" can_write="true" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                </group>
+                <group string="Amount">
+                  <field name="amount" modifiers="{&quot;required&quot;: true}"/>
+                  <field name="product_id" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="product_uom_id" class="oe_inline" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="unit_amount" on_change="1" modifiers="{}"/>
+                  <field name="currency_id" invisible="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                </group>
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="name">Odoo Studio: helpdesk.ticket.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_project__06dceb42-6193-41c0-9bbb-a0087f9cccc0" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='employee_id']" position="after">
+          <field name="x_studio_field_StEIO" studio-view-group-names="Employee,User" studio-view-group-ids="1,41" string="Ticket ID"/>
+        </xpath>
+        <xpath expr="//field[@name='timesheet_ids']" position="inside">
+          <form string="Analytic Entry">
+            <sheet string="Analytic Entry">
+              <group>
+                <group>
+                  <field name="helpdesk_ticket_id" studio-view-group-names="User" studio-view-group-ids="41"/>
+                  <field name="name" modifiers="{}"/>
+                  <field name="rate_id" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="account_id" on_change="1" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
+                  <field name="tag_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="general_account_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                  <field name="ref" modifiers="{}"/>
+                  <field name="partner_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                  <field name="move_id" readonly="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                  <field name="date" modifiers="{&quot;required&quot;: true}"/>
+                  <field name="company_id" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                </group>
+                <group string="Amount">
+                  <field name="amount" modifiers="{&quot;required&quot;: true}"/>
+                  <!--field name="company_currency_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/-->
+                  <!--field name="amount_currency" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/-->
+                  <!--field name="analytic_amount_currency" modifiers="{&quot;readonly&quot;: true}"/-->
+                  <field name="product_id" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="product_uom_id" class="oe_inline" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                  <field name="unit_amount" on_change="1" modifiers="{}"/>
+                  <field name="currency_id" invisible="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                </group>
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">project.task</field>
+    <field name="name">Odoo Studio: project.task.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_helpdesk_60ebd23c-fec0-457a-ac52-981943ab4a60" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='display_name']" position="before">
+          <field name="create_date"/>
+          <field name="id"/>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="write_date"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="name">Odoo Studio: helpdesk.ticket.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_product__98552552-abe9-429c-8c22-258e57321a21" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='sequence']" position="attributes"/>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="product.variants_tree_view"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">product.attribute.value</field>
+    <field name="name">Odoo Studio: product.attribute.value.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_product__d3efe6a2-e748-4113-8a19-c1425e094bba" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="False"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='default_code']" position="before">
+          <field name="sequence" widget="handle"/>
+          <field name="x_studio_field_H3DjR" string="Main Sequence"/>
+          <field name="sub_sequence"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="product.product_product_tree_view"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">product.product</field>
+    <field name="name">Odoo Studio: product.product.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_purchase_9acda926-61c9-42be-b279-76884eed209a" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <field name="partner_ref"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">purchase.order</field>
+    <field name="name">Odoo Studio: purchase.order.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__e9ab0e38-0860-4bc5-a22b-52d0a0c4962c" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='task_id']" position="after">
+          <field name="helpdesk_ticket_id"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.analytic.line</field>
+    <field name="name">Odoo Studio: account.analytic.line.tree.hr_timesheet customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__fe61f91c-eca0-41ce-a6eb-76760a437088" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='task_id']" position="attributes">
+          <attribute name="domain">[]</attribute>
+        </xpath>
+        <xpath expr="//field[@name='unit_amount']" position="after">
+          <field name="helpdesk_ticket_id"/>
+          <field name="so_line"/>
+          <field name="timesheet_invoice_id" readonly="0"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="timesheet_grid.timesheet_view_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.analytic.line</field>
+    <field name="name">Odoo Studio: account.analytic.line.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__a80f5ed9-96a2-41a0-85f6-1010d815c4db" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='name']" position="after">
+          <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account.view_tax_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.tax</field>
+    <field name="name">Odoo Studio: account.tax.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.default_tree_view_fo_73a1fbfe-29c4-41bd-96a8-75705acb1d7f" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <tree string="Account Tag">
+        <field name="name" modifiers="{&quot;required&quot;: true}"/>
+      </tree>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" eval="False"/>
+    <field name="key" eval="False"/>
+    <field name="mode">primary</field>
+    <field name="model">account.account.tag</field>
+    <field name="name">Default tree view for account.account.tag</field>
+    <field name="priority">16</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_default__090852f1-500a-4a67-9f6b-48bf0e49b8bf" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='name']" position="before">
+          <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="studio_customization.default_tree_view_fo_73a1fbfe-29c4-41bd-96a8-75705acb1d7f"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.account.tag</field>
+    <field name="name">Odoo Studio: Default tree view for account.account.tag customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_res_user_4df6a6b7-416e-452d-82d1-537c3890ca66" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]/field[@name='name']" position="before">
+          <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="base.view_users_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">res.users</field>
+    <field name="name">Odoo Studio: res.users.tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__2591f08f-333f-4174-8d86-0254efdf5731" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='deprecated']" position="after">
+          <field name="in_tax_ids"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account.view_account_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.account</field>
+    <field name="name">Odoo Studio: account.account.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_account__76fed0fb-4505-4a35-ace2-96af4af24eda" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='line_ids']" position="inside">
+          <form string="Statement Line" create="false">
+            <group col="4">
+              <field name="statement_id"/>
+              <field name="date"/>
+              <field name="name"/>
+              <field name="ref"/>
+              <field name="partner_id"/>
+              <field name="amount"/>
+              <field name="journal_currency_id" invisible="1"/>
+              <field name="sequence"/>
+              <field name="note"/>
+            </group>
+          </form>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="account.view_bank_statement_form"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">account.bank.statement</field>
+    <field name="name">Odoo Studio: account.bank.statement.form customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+  <record id="studio_customization.odoo_studio_ir_cron__b4ee5e0c-a38b-4c1c-a6b9-cb5c43770bc3" model="ir.ui.view" context="{'studio': True}">
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='nextcall']" position="after">
+          <field name="doall"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="base.ir_cron_view_tree"/>
+    <field name="key" eval="False"/>
+    <field name="mode">extension</field>
+    <field name="model">ir.cron</field>
+    <field name="name">Odoo Studio: ir.cron tree customization</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+</odoo>

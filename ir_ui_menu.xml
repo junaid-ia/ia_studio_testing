@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="studio_customization.test_mm_product_vari_a6026fe2-d9ca-40f2-b93d-0cee7e2f7424" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="studio_customization.product_variants_ae61cc1e-1003-4c2e-a307-5ac497b75115"/>
+    <field name="active" eval="True"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="name">Product Variants</field>
+    <field name="parent_id" eval="False"/>
+    <field name="sequence">10</field>
+    <field name="web_icon" eval="False"/>
+  </record>
+</odoo>

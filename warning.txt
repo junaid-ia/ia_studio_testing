@@ -1,0 +1,20 @@
+The following relational data haven't been exported because they either refer
+to a model that Studio doesn't export, or have no XML id:
+
+Record: studio_customization.tickets_new_in_progr_d531b549-5327-4549-8b55-007bf312b216
+Model: ir.actions.server
+Field: fields_lines
+Type: one2many
+Value: ir.server.object.lines(868,) ('ir.server.object.lines,868')
+
+Record: studio_customization.task_new_in_progress_4615fbb2-42f8-4fcb-8e7b-db2318040882
+Model: ir.actions.server
+Field: fields_lines
+Type: one2many
+Value: ir.server.object.lines(870,) ('ir.server.object.lines,870')
+
+Record: studio_customization.assign_tickets_to_ri_22eda641-e5cb-4c5e-b138-19c0cce31d11
+Model: base.automation
+Field: action_server_id
+Type: many2one
+Value: ir.actions.server(1015,) ('Assign Tickets to Richard Jardine')
